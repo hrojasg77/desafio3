@@ -1,0 +1,1 @@
+[{"title":"Wired Keyboard","price":7500,"thumbnail":"http://1.com/foto1.jpg","id":1},{"title":"Pro Fit Washable","price":15500,"thumbnail":"http://1.com/foto2.jpg","id":2},{"title":"Kensington Compact Multidevice Keyboard Dual Wireless","price":19990,"thumbnail":"http://1.com/foto2.jpg","id":3}]
