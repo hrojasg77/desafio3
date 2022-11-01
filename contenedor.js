@@ -1,8 +1,8 @@
 const fs = require('fs')
 
 class ContenedorArchivo {
-    #productos
-    #cNombreArchivo
+    productos
+    cNombreArchivo
     
         constructor(cNombreArchivo) {
             this.#cNombreArchivo = cNombreArchivo
@@ -12,8 +12,8 @@ class ContenedorArchivo {
         async save(obj)
         {
             try {
-                this.#productos.push(obj)
-                await fs.promises.writeFile(this.#cNombreArchivo,JSON.stringify(this.#productos))
+                this.productos.push(obj)
+                await fs.promises.writeFile(this.cNombreArchivo,JSON.stringify(this.productos))
             }
             catch(error)
             {
@@ -25,8 +25,8 @@ class ContenedorArchivo {
         async getById(id) {
             try {
 
-                this.#productos = JSON.parse( await fs.promises.readFile(this.#cNombreArchivo,'utf-8') )
-                const result = this.#productos.find(productos => productos.id == id);
+                this.productos = JSON.parse( await fs.promises.readFile(this.cNombreArchivo,'utf-8') )
+                const result = this.productos.find(productos => productos.id == id);
                 if (result) {
                 return result
                 } else {
@@ -41,17 +41,17 @@ class ContenedorArchivo {
           }
             
         async getAll() {
-            this.#productos = await fs.promises.readFile(this.#cNombreArchivo,'utf-8')
-            return this.#productos
+            this.productos = await fs.promises.readFile(this.cNombreArchivo,'utf-8')
+            return this.productos
         }
     
         async deletebyId(Number) {
             try {
-                this.#productos = JSON.parse( await fs.promises.readFile(this.#cNombreArchivo,'utf-8') )            
-                const indice = this.#productos.findIndex(productos => productos.id == Number);
+                this.productos = JSON.parse( await fs.promises.readFile(this.cNombreArchivo,'utf-8') )            
+                const indice = this.productos.findIndex(productos => productos.id == Number);
                 if (indice != -1) {
-                    this.#productos.splice(indice,1)
-                        await fs.promises.writeFile(this.#cNombreArchivo,JSON.stringify(this.#productos))                
+                    this.productos.splice(indice,1)
+                        await fs.promises.writeFile(this.cNombreArchivo,JSON.stringify(this.productos))                
                 }
             }
             catch(error)
@@ -62,9 +62,9 @@ class ContenedorArchivo {
     
         async deleteAll() {           
             try {            
-                this.#productos = JSON.parse( await fs.promises.readFile(this.#cNombreArchivo,'utf-8') )            
-                this.#productos.splice(0)
-                await fs.promises.writeFile(this.#cNombreArchivo,JSON.stringify(this.#productos))                            
+                this.productos = JSON.parse( await fs.promises.readFile(this.cNombreArchivo,'utf-8') )            
+                this.productos.splice(0)
+                await fs.promises.writeFile(this.cNombreArchivo,JSON.stringify(this.productos))                            
             }
             catch(error)
             {
@@ -72,21 +72,21 @@ class ContenedorArchivo {
             }
         }
 
-		async getProductoRandom() {
+	async getProductoRandom() {
             try {
 
-                this.#productos = JSON.parse( await fs.promises.readFile(this.#cNombreArchivo,'utf-8') )
+                this.productos = JSON.parse( await fs.promises.readFile(this.cNombreArchivo,'utf-8') )
             }
             catch(error)
             {
                 console.error(error);
             }
-                const numElementos = this.#productos.length 
+                const numElementos = this.productos.length 
                 console.log(numElementos)
                 if (numElementos > 0)
                 {
                    const indiceAleatorio =  Math.floor(Math.random()*numElementos)
-                   const result = JSON.stringify( this.#productos[indiceAleatorio] )  
+                   const result = JSON.stringify( this.productos[indiceAleatorio] )  
                    return result                   
                 } 
                 else
