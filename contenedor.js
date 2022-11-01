@@ -1,12 +1,9 @@
 const fs = require('fs')
 
 class ContenedorArchivo {
-    productos
-    cNombreArchivo
-    
         constructor(cNombreArchivo) {
-            this.#cNombreArchivo = cNombreArchivo
-            this.#productos = []
+            this.cNombreArchivo = cNombreArchivo
+            this.productos = []
         }
     
         async save(obj)
